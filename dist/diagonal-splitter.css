@@ -1,0 +1,44 @@
+.splitter-root {
+  overflow: hidden;
+  height: 400px;
+  width: 600px;
+  position: relative;
+}
+.splitter-root .moving-part {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  overflow: hidden;
+}
+.splitter-root .moving-part > div {
+  height: 100%;
+  position: relative;
+  background: lightgreen;
+}
+.splitter-root .static-part {
+  width: 100%;
+  height: 100%;
+  background: #272728;
+}
+.splitter-root button {
+  background: transparent;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: solid 1px white;
+  color: white;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  cursor: pointer;
+}
+.splitter-root button:first-of-type {
+  left: 25%;
+}
+.splitter-root button:last-of-type {
+  left: 75%;
+}
+
+
+/*# sourceMappingURL=diagonal-splitter.css.map*/
