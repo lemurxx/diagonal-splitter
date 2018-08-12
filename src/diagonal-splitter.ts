@@ -32,18 +32,22 @@ class DiagonalSplitter {
           console.warn('Invalid selector, ' + ex);
           throw(ex);
       }
-
-      this.movingPart = this.root.find(".moving-part");
-      this.movingChild = this.root.find(".moving-part>div");
-      this.movingPart.css({ transform: `skewX(${this.options.angle}deg)`, transition: `${this.options.switchDuration}ms` });
-      this.movingChild.css({ transform: `skewX(${-this.options.angle}deg)`, transition: `${this.options.switchDuration}ms` });
-      this.btnLeft = this.root.find("#btn-left");
-      this.btnRight = this.root.find("#btn-right");
-      this.diagonalWidth = this.root.height() * Math.tan(Math.PI / 180 * this.options.angle);
-      this.movingPart.width(this.root.width() * 5);
-      this.movingChild.width(this.root.width());
+      this.initElements();
       this.center();
       this.initEvents();
+    }
+
+
+    private initElements() {
+        this.movingPart = this.root.find(".moving-part");
+        this.movingChild = this.root.find(".moving-part>div");
+        this.movingPart.css({ transform: `skewX(${this.options.angle}deg)`, transition: `${this.options.switchDuration}ms` });
+        this.movingChild.css({ transform: `skewX(${-this.options.angle}deg)`, transition: `${this.options.switchDuration}ms` });
+        this.btnLeft = this.root.find("#btn-left");
+        this.btnRight = this.root.find("#btn-right");
+        this.diagonalWidth = this.root.height() * Math.tan(Math.PI / 180 * this.options.angle);
+        this.movingPart.width(this.root.width() * 5);
+        this.movingChild.width(this.root.width());
     }
 
     private initEvents() {
@@ -69,6 +73,7 @@ class DiagonalSplitter {
           return false;
         });
         this.movingPart.mouseleave(() => this.left());
+        $(window).resize(() => {this.initElements(); this.center();});
       }
 
       this.btnRight
